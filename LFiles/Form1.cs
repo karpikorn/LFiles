@@ -39,9 +39,9 @@ namespace LFiles
             listBox1.ContextMenuStrip = contextMenuStrip1;
             listBox2.ContextMenuStrip = contextMenuStrip1;
 
-            
+            Graphics g = CreateGraphics();
             Drives = Directory.GetLogicalDrives();
-           
+            
             foreach (var drive in Drives)
             {
                 LeftDrives.Items.Add(drive);
@@ -222,7 +222,62 @@ namespace LFiles
             }
         }
 
+        void FDelete()
+        {
+            if (listBox1.SelectedIndex > -1)
+            {
+
+                var a = listBox1.SelectedIndices;
+                for (int i = 0; i < a.Count; i++)
+                {
+                    var tmp = LeftPanel[a[i]];
+                    if (LeftPanel[listBox1.SelectedIndex].ext != "DIR/" && LeftPanel[listBox1.SelectedIndex].name != "[..]")
+                    {
+                        FileSystem.DeleteFile(tmp.path, UIOption.AllDialogs, RecycleOption.DeletePermanently, UICancelOption.DoNothing);
+                    }
+                    else if (LeftPanel[listBox1.SelectedIndex].name != "[..]")
+                    {
+                        FileSystem.DeleteDirectory(tmp.path, UIOption.AllDialogs, RecycleOption.DeletePermanently, UICancelOption.DoNothing);
+
+                    }
+                }
+                UpdatePath(leftpath, true);
+            }
+            else if (listBox2.SelectedIndex > -1)
+            {
+                var a = listBox2.SelectedIndices;
+                for (int i = 0; i < a.Count; i++)
+                {
+                    var tmp = RightPanel[a[i]];
+                    if (RightPanel[listBox2.SelectedIndex].ext != "DIR/" && RightPanel[listBox2.SelectedIndex].name != "[..]")
+                    {
+                        FileSystem.CopyFile(tmp.path, leftpath + tmp.name, UIOption.AllDialogs, UICancelOption.DoNothing);
+                    }
+                    else if (RightPanel[listBox2.SelectedIndex].name != "[..]")
+                    {
+                        FileSystem.CopyDirectory(tmp.path, leftpath + tmp.name, UIOption.AllDialogs, UICancelOption.DoNothing);
+                    }
+                }
+                UpdatePath(rightpath, false);
+            }
             
+        }
+
+        void FRename()
+        {
+            if (listBox1.SelectedIndex > -1)
+
+            {
+                var a = new RenameDialog(LeftPanel[listBox1.SelectedIndex], this);
+                a.Show();
+            }
+            else if (listBox2.SelectedIndex > -1)
+            {
+                var a = new RenameDialog(RightPanel[listBox2.SelectedIndex], this);
+                a.Show();
+            }
+        }
+
         void FCopy()
         {
             if (listBox1.SelectedIndex > -1)
@@ -234,11 +289,11 @@ namespace LFiles
                     var tmp = LeftPanel[a[i]];
                     if (LeftPanel[listBox1.SelectedIndex].ext != "DIR/" && LeftPanel[listBox1.SelectedIndex].name != "[..]")
                     {
-                        FileSystem.CopyFile(tmp.path, rightpath + "\\" + tmp.name, UIOption.AllDialogs, UICancelOption.DoNothing);
+                        FileSystem.CopyFile(tmp.path, rightpath + tmp.name, UIOption.AllDialogs);
                     }
                     else if (LeftPanel[listBox1.SelectedIndex].name != "[..]")
                     {
-                        FileSystem.CopyDirectory(tmp.path, rightpath + "\\" + tmp.name, UIOption.AllDialogs, UICancelOption.DoNothing);
+                        FileSystem.CopyDirectory(tmp.path, rightpath + tmp.name, UIOption.AllDialogs);
                     }
                 }
                 UpdatePath(rightpath,false);
@@ -251,11 +306,11 @@ namespace LFiles
                     var tmp = RightPanel[a[i]];
                     if (RightPanel[listBox2.SelectedIndex].ext != "DIR/" && RightPanel[listBox2.SelectedIndex].name != "[..]")
                     {
-                        FileSystem.CopyFile(tmp.path, leftpath +"\\" + tmp.name, UIOption.AllDialogs, UICancelOption.DoNothing);
+                        FileSystem.CopyFile(tmp.path, leftpath + tmp.name, UIOption.AllDialogs);
                     }
                     else if (RightPanel[listBox2.SelectedIndex].name != "[..]")
                     {
-                        FileSystem.CopyDirectory(tmp.path, leftpath + "\\" + tmp.name, UIOption.AllDialogs, UICancelOption.DoNothing);
+                        FileSystem.CopyDirectory(tmp.path, leftpath + tmp.name, UIOption.AllDialogs);
                     }
                 }
                 UpdatePath(leftpath, true);
@@ -324,12 +379,30 @@ namespace LFiles
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FDelete();
+        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FCopy();
         }
-                          
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FDelete();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FRename();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FRename();
+        }
 
         public void UpdatePath()
         {

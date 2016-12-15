@@ -41,6 +41,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -141,34 +143,56 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 70);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
-            this.toolStripMenuItem1.Text = "Копировать";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem1.Text = "Копировайтен";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
-            this.toolStripMenuItem2.Text = "Удалить";
-           
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem2.Text = "Удаляйтен";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
-            this.toolStripMenuItem3.Text = "Переименовать";
-      
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem3.Text = "Переименовайтен";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(162, 555);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(143, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Переименовать ";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(311, 555);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(143, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Удaлить";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 590);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.RightDrives);
             this.Controls.Add(this.listBox2);
@@ -177,7 +201,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "LFiles";
+            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -201,6 +225,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
 
 
     }
